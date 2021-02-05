@@ -84,14 +84,21 @@ module Host =
         Remoting.createApi ()
         |> Remoting.withRouteBuilder Route.builder
         |> Remoting.fromValue (api ())
+        |> Remoting.withDiagnosticsLogger (logger.Debug)
         |> Remoting.buildHttpHandler
-   
+
+    let webApp () =
+        choose [
+            route "/ping" >=> text "pong"
+            createApi ()
+        ]
+
     let configureApp (app: IApplicationBuilder) =
         app
             .UseDefaultFiles()
             .UseStaticFiles()
             .UseRequestLogger()
-            .UseGiraffe(createApi ())
+            .UseGiraffe(webApp ())
 
     let configureServices (services: IServiceCollection) =
 

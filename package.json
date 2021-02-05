@@ -1,8 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "start": "webpack-dev-server",
-        "build": "webpack -p"
+        "start": "dotnet fable watch ./src/Client -s --run webpack-dev-server",
+        "build": "dotnet fable ./src/Client --run webpack"
     },
     "devDependencies": {
         "@babel/core": "^7.6.4",
@@ -13,8 +13,6 @@
         "copy-webpack-plugin": "^6.1.0",
         "core-js": "^3.3.2",
         "css-loader": "^4.2.1",
-        "fable-compiler": "^2.10.2",
-        "fable-loader": "^2.1.8",
         "file-loader": "^4.2.0",
         "html-webpack-plugin": "^3.2.0",
         "mini-css-extract-plugin": "^0.10.0",

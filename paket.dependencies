@@ -13,6 +13,7 @@ nuget Fable.FontAwesome.Free
 nuget Fable.React
 nuget Fable.Remoting.Client
 nuget NLog.Web.AspNetCore
+nuget Fable.Remoting.MsgPack
 
 group Build
     source https://api.nuget.org/v3/index.json
