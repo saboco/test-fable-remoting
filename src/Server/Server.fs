@@ -80,12 +80,18 @@ module Host =
             Show = handleShow
             Act = handleAct }
 
+    let errorHandler (ex : Exception) _  =
+        logger.Trace(ex)
+        Propagate ex
+
     let createApi () =
         Remoting.createApi ()
         |> Remoting.withRouteBuilder Route.builder
+        |> Remoting.withErrorHandler errorHandler
+        |> Remoting.withDiagnosticsLogger (logger.Debug)
         |> Remoting.fromValue (api ())
         |> Remoting.buildHttpHandler
-   
+
     let configureApp (app: IApplicationBuilder) =
         app
             .UseDefaultFiles()
